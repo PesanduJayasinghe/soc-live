@@ -8,7 +8,7 @@ interface BingoSquareProps {
 
 export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
   const baseClasses =
-    'relative flex items-center justify-center p-2 text-center font-mono font-bold transition-all duration-150 select-none min-h-[70px] text-xs leading-tight rounded cursor-pointer active:scale-95';
+    'relative flex items-center justify-center p-2 text-center font-mono font-bold transition-all duration-150 select-none min-h-[70px] text-xs leading-tight rounded-2xl cursor-pointer active:scale-95';
 
   const stateClasses = square.isMarked
     ? isWinning

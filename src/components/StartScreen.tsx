@@ -28,7 +28,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         <div className="w-32 h-0.5 mx-auto mb-8 bg-gradient-to-r from-transparent via-neon-pink to-transparent"></div>
 
         {/* Rules box with neon border */}
-        <div className="bg-void-light backdrop-blur border-2 border-neon-cyan p-6 shadow-2xl mb-8 relative neon-border-cyan">
+        <div className="bg-void-light backdrop-blur border-2 border-neon-cyan p-6 shadow-2xl mb-8 relative neon-border-cyan rounded-3xl">
           <div className="absolute -top-3 left-4 bg-void-light px-2">
             <span className="text-neon-cyan text-xs font-bold tracking-widest">[ RULES ]</span>
           </div>
@@ -51,7 +51,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         {/* Start button with neon pulse */}
         <button
           onClick={onStart}
-          className="w-full bg-neon-pink text-void font-black py-4 px-8 rounded-lg text-lg neon-pulse transition-all hover:scale-105 tracking-widest"
+          className="w-full bg-neon-pink text-void font-black py-4 px-8 rounded-2xl text-lg neon-pulse transition-all hover:scale-105 tracking-widest"
         >
           [ ENTER THE GAME ]
         </button>
