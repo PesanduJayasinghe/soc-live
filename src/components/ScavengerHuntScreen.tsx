@@ -40,59 +40,67 @@ export function ScavengerHuntScreen({
       </header>
 
       {/* Progress section */}
-      <div className="relative z-10 p-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-neon-cyan font-bold tracking-widest text-sm">Progress</span>
+      <div className="relative z-10 p-6 border-b-2 border-neon-cyan/30">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-neon-cyan font-bold tracking-widest text-sm">PROGRESS</span>
             <span className="text-neon-pink font-black text-lg">{markedItems.size} / {items.length}</span>
           </div>
           {/* Progress bar */}
-          <div className="h-2 bg-void-light border-2 border-neon-cyan rounded-full overflow-hidden neon-border-cyan">
+          <div className="h-3 bg-void-light border-2 border-neon-cyan rounded-full overflow-hidden neon-border-cyan">
             <div
               className="h-full bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan transition-all duration-500 rounded-full"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
+          <div className="text-center mt-2 text-neon-cyan text-xs font-mono tracking-widest">
+            {progress}% COMPLETE
+          </div>
           {isComplete && (
-            <div className="mt-2 text-center text-neon-pink font-black tracking-widest text-sm glitch">
+            <div className="mt-3 text-center text-neon-pink font-black tracking-widest text-sm glitch animate-pulse">
               ✦ HUNT COMPLETE! ✦
             </div>
           )}
         </div>
       </div>
 
-      {/* Items grid */}
-      <div className="relative z-10 flex-1 overflow-y-auto p-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {items.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => !item.isFreeSpace && onItemMark(item.id)}
-                disabled={item.isFreeSpace}
-                className={`relative p-4 rounded-2xl transition-all duration-200 font-bold text-sm text-center cursor-pointer active:scale-95 ${
-                  item.isMarked
-                    ? 'bg-neon-pink text-void border-2 border-neon-pink neon-pulse hover:shadow-lg hover:shadow-neon-pink/50'
-                    : 'bg-void-light text-neon-cyan border-2 border-neon-cyan hover:border-neon-pink hover:shadow-lg hover:shadow-neon-cyan/50'
-                }`}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  {item.isMarked ? (
-                    <span className="text-lg">✓</span>
-                  ) : (
-                    <span className="text-lg opacity-50">○</span>
-                  )}
-                  <span className="text-xs leading-tight">{item.text}</span>
-                </div>
-              </button>
-            ))}
-          </div>
+      {/* Items checklist */}
+      <div className="relative z-10 flex-1 overflow-y-auto p-6">
+        <div className="max-w-3xl mx-auto space-y-2">
+          {items.map((item, index) => (
+            <button
+              key={item.id}
+              onClick={() => !item.isFreeSpace && onItemMark(item.id)}
+              disabled={item.isFreeSpace}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-200 font-semibold text-left active:scale-95 ${
+                item.isMarked
+                  ? 'bg-neon-pink text-void border-2 border-neon-pink neon-pulse hover:shadow-lg hover:shadow-neon-pink/50'
+                  : 'bg-void-light text-neon-cyan border-2 border-neon-cyan hover:border-neon-pink hover:shadow-lg hover:shadow-neon-cyan/50'
+              }`}
+            >
+              {/* Checkbox */}
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg border-2" style={{
+                borderColor: item.isMarked ? '#0a0a0a' : '#00f5ff',
+                backgroundColor: item.isMarked ? '#0a0a0a' : 'transparent'
+              }}>
+                {item.isMarked && (
+                  <span className="text-lg font-black">✓</span>
+                )}
+              </div>
+              
+              {/* Item text */}
+              <span className="flex-1">{item.text}</span>
+              
+              {/* Index indicator */}
+              <span className="flex-shrink-0 text-xs opacity-60 font-mono">{String(index + 1).padStart(2, '0')}</span>
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center text-neon-cyan/50 text-xs py-3 font-mono tracking-widest border-t border-neon-cyan/30">
-        {isComplete ? '// MISSION ACCOMPLISHED' : '// FIND ALL ITEMS'}
+      <footer className="relative z-10 text-center text-neon-cyan/50 text-xs py-4 font-mono tracking-widest border-t border-neon-cyan/30 bg-void-light/40 backdrop-blur">
+        {isComplete ? '// ✦ MISSION ACCOMPLISHED ✦' : `// FIND ${items.length - markedItems.size} MORE ITEMS`}
       </footer>
     </div>
   );
