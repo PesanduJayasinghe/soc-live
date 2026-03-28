@@ -13,8 +13,9 @@ export function ScavengerHuntScreen({
   onItemMark,
   onReset,
 }: ScavengerHuntScreenProps) {
-  const progress = Math.round((markedItems.size / items.length) * 100);
-  const isComplete = markedItems.size === items.length;
+  const progress = items.length > 0 ? Math.round((markedItems.size / items.length) * 100) : 100;
+  const isComplete = markedItems.size === items.length && items.length > 0;
+  const remainingItems = items.length - markedItems.size;
 
   return (
     <div className="relative flex flex-col min-h-full bg-gradient-to-b from-void via-upside-down to-void">
@@ -79,20 +80,23 @@ export function ScavengerHuntScreen({
               }`}
             >
               {/* Checkbox */}
-              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg border-2" style={{
-                borderColor: item.isMarked ? '#0a0a0a' : '#00f5ff',
-                backgroundColor: item.isMarked ? '#0a0a0a' : 'transparent'
-              }}>
-                {item.isMarked && (
-                  <span className="text-lg font-black">✓</span>
-                )}
+              <div
+                className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg border-2"
+                style={{
+                  borderColor: item.isMarked ? '#0a0a0a' : '#00f5ff',
+                  backgroundColor: item.isMarked ? '#0a0a0a' : 'transparent',
+                }}
+              >
+                {item.isMarked && <span className="text-lg font-black">✓</span>}
               </div>
               
               {/* Item text */}
               <span className="flex-1">{item.text}</span>
               
               {/* Index indicator */}
-              <span className="flex-shrink-0 text-xs opacity-60 font-mono">{String(index + 1).padStart(2, '0')}</span>
+              <span className="flex-shrink-0 text-xs opacity-60 font-mono">
+                {String(index + 1).padStart(2, '0')}
+              </span>
             </button>
           ))}
         </div>
@@ -100,7 +104,7 @@ export function ScavengerHuntScreen({
 
       {/* Footer */}
       <footer className="relative z-10 text-center text-neon-cyan/50 text-xs py-4 font-mono tracking-widest border-t border-neon-cyan/30 bg-void-light/40 backdrop-blur">
-        {isComplete ? '// ✦ MISSION ACCOMPLISHED ✦' : `// FIND ${items.length - markedItems.size} MORE ITEMS`}
+        {isComplete ? '// ✦ MISSION ACCOMPLISHED ✦' : `// FIND ${remainingItems} MORE ITEMS`}
       </footer>
     </div>
   );
