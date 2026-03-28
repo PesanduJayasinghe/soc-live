@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { StartScreen } from './components/StartScreen';
 import { GameScreen } from './components/GameScreen';
 import { ScavengerHuntScreen } from './components/ScavengerHuntScreen';
+import { CardDeckScreen } from './components/CardDeckScreen';
 import { BingoModal } from './components/BingoModal';
 
-type GameMode = 'select' | 'bingo' | 'scavenger';
+type GameMode = 'select' | 'bingo' | 'scavenger' | 'card-deck';
 
 function App() {
   const [mode, setMode] = useState<GameMode>('select');
@@ -20,7 +21,7 @@ function App() {
     dismissModal,
   } = useBingoGame();
 
-  const handleModeSelect = (selectedMode: 'bingo' | 'scavenger') => {
+  const handleModeSelect = (selectedMode: 'bingo' | 'scavenger' | 'card-deck') => {
     setMode(selectedMode);
     if (selectedMode === 'bingo') {
       startGame();
@@ -42,6 +43,15 @@ function App() {
         items={board}
         markedItems={new Set(board.filter(b => b.isMarked).map(b => b.id))}
         onItemMark={(id) => handleSquareClick(id)}
+        onReset={handleBack}
+      />
+    );
+  }
+
+  if (mode === 'card-deck') {
+    return (
+      <CardDeckScreen
+        questions={board.map(b => b.text)}
         onReset={handleBack}
       />
     );

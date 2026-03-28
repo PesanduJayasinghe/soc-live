@@ -1,5 +1,5 @@
 interface StartScreenProps {
-  onSelectMode: (mode: 'bingo' | 'scavenger') => void;
+  onSelectMode: (mode: 'bingo' | 'scavenger' | 'card-deck') => void;
 }
 
 export function StartScreen({ onSelectMode }: StartScreenProps) {
@@ -12,7 +12,7 @@ export function StartScreen({ onSelectMode }: StartScreenProps) {
       {/* Scanlines overlay */}
       <div className="absolute inset-0 scanlines pointer-events-none"></div>
 
-      <div className="relative text-center max-w-2xl z-10">
+      <div className="relative text-center max-w-3xl z-10">
         {/* Main title */}
         <h1 className="text-7xl font-black mb-2 flicker tracking-widest">
           SOC OPS
@@ -29,7 +29,7 @@ export function StartScreen({ onSelectMode }: StartScreenProps) {
         <div className="w-40 h-0.5 mx-auto mb-12 bg-gradient-to-r from-transparent via-neon-pink to-transparent"></div>
 
         {/* Mode selection cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Bingo Mode */}
           <div
             onClick={() => onSelectMode('bingo')}
@@ -56,6 +56,21 @@ export function StartScreen({ onSelectMode }: StartScreenProps) {
               <h2 className="text-2xl font-black text-neon-cyan mb-2 tracking-widest">HUNT</h2>
               <p className="text-neon-pink text-sm font-mono leading-relaxed">
                 Check off all items<br/>Complete your scavenger hunt
+              </p>
+            </div>
+          </div>
+
+          {/* Card Deck Mode */}
+          <div
+            onClick={() => onSelectMode('card-deck')}
+            className="relative group cursor-pointer transform transition-all hover:scale-105"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-purple opacity-25 rounded-3xl blur-lg group-hover:opacity-50 transition-opacity"></div>
+            <div className="relative bg-void-light backdrop-blur border-2 border-neon-purple p-8 rounded-3xl neon-border-purple hover:border-neon-cyan transition-all">
+              <div className="text-5xl mb-3">Ώ</div>
+              <h2 className="text-2xl font-black text-neon-purple mb-2 tracking-widest">CARDS</h2>
+              <p className="text-neon-cyan text-sm font-mono leading-relaxed">
+                Random card draw<br/>Perfect for icebreakers
               </p>
             </div>
           </div>
