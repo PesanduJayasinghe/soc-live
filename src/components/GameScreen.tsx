@@ -26,10 +26,10 @@ export function GameScreen({
       <div className="absolute inset-0 scanlines pointer-events-none"></div>
 
       {/* Header */}
-      <header className="relative z-20 flex items-center justify-between p-4 border-b-2 border-neon-cyan bg-void-light/80 backdrop-blur">
+      <header className="relative z-20 flex items-center justify-between p-4 border-b-2 border-neon-cyan bg-void-light/80 backdrop-blur rounded-b-3xl">
         <button
           onClick={onReset}
-          className="text-neon-cyan hover:text-neon-pink text-sm px-3 py-1.5 rounded border border-neon-cyan neon-border-cyan transition-all font-bold tracking-widest"
+          className="text-neon-cyan hover:text-neon-pink text-sm px-3 py-1.5 rounded-xl border border-neon-cyan neon-border-cyan transition-all font-bold tracking-widest"
         >
           ← BACK
         </button>
@@ -46,7 +46,7 @@ export function GameScreen({
 
       {/* BINGO indicator */}
       {hasBingo && (
-        <div className="relative z-10 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-pink text-void-light text-center py-3 font-black text-lg tracking-widest animate-pulse border-y-2 border-neon-cyan">
+        <div className="relative z-10 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-pink text-void-light text-center py-3 font-black text-lg tracking-widest animate-pulse border-y-2 border-neon-cyan rounded-2xl mx-4">
           ◆ BINGO! YOU GOT A LINE! ◆
         </div>
       )}
@@ -55,10 +55,10 @@ export function GameScreen({
       <div className="relative z-10 flex-1 flex items-center justify-center p-4">
         <div className="relative">
           {/* Glow background */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan opacity-20 rounded-lg blur-lg"></div>
+          <div className="absolute -inset-4 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan opacity-20 rounded-3xl blur-lg"></div>
           
           {/* Board with neon border */}
-          <div className="relative border-2 border-neon-cyan p-2 bg-void-light neon-border-cyan rounded-lg">
+          <div className="relative border-2 border-neon-cyan p-2 bg-void-light neon-border-cyan rounded-3xl">
             <BingoBoard
               board={board}
               winningSquareIds={winningSquareIds}

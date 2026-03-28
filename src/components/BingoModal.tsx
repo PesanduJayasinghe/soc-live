@@ -8,9 +8,9 @@ export function BingoModal({ onDismiss }: BingoModalProps) {
       {/* Scanlines overlay */}
       <div className="absolute inset-0 scanlines pointer-events-none"></div>
 
-      <div className="relative bg-gradient-to-br from-void-light to-upside-down rounded-lg p-2 max-w-xs w-full text-center shadow-2xl border-2 border-neon-pink neon-pulse">
+      <div className="relative bg-gradient-to-br from-void-light to-upside-down rounded-3xl p-2 max-w-xs w-full text-center shadow-2xl border-2 border-neon-pink neon-pulse">
         {/* Inner content box */}
-        <div className="bg-void p-6 rounded">
+        <div className="bg-void p-6 rounded-2xl">
           {/* Portal effect decoration */}
           <div className="flex justify-center mb-4">
             <div className="relative w-16 h-16">
@@ -35,7 +35,7 @@ export function BingoModal({ onDismiss }: BingoModalProps) {
           {/* Button */}
           <button
             onClick={onDismiss}
-            className="w-full bg-neon-cyan text-void font-black py-3 px-6 rounded transition-all hover:scale-105 active:scale-95 tracking-widest border-2 border-neon-cyan neon-border-cyan"
+            className="w-full bg-neon-cyan text-void font-black py-3 px-6 rounded-xl transition-all hover:scale-105 active:scale-95 tracking-widest border-2 border-neon-cyan neon-border-cyan"
           >
             [ CONTINUE ]
           </button>
