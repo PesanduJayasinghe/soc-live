@@ -1,11 +1,16 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  --color-void: #0a0a0a;
+  --color-void-light: #1a1a2e;
+  --color-upside-down: #16213e;
+  --color-neon-pink: #ff006e;
+  --color-neon-cyan: #00f5ff;
+  --color-neon-purple: #b537f2;
+  --color-neon-red: #ff0055;
+  --color-sync-blue: #0098ff;
+  --color-marked: #ffd60a;
+  --font-display: 'Courier New', monospace;
 }
 
 html,
@@ -16,6 +21,189 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0a;
+  font-family: 'Courier New', monospace;
+  color: #00f5ff;
   -webkit-tap-highlight-color: transparent;
+  letter-spacing: 0.05em;
+}
+
+/* Flickering glow effect */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 10px #ff006e,
+      0 0 20px #ff006e,
+      0 0 30px #ff006e,
+      0 0 40px #b537f2;
+    filter: brightness(1);
+  }
+  20%, 24%, 55% {
+    text-shadow: 
+      0 0 5px #ff006e,
+      0 0 10px #ff006e;
+    filter: brightness(0.8);
+  }
+}
+
+@keyframes cyan-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px #00f5ff,
+      0 0 40px #00f5ff,
+      0 0 60px #0098ff;
+  }
+  50% {
+    text-shadow: 
+      0 0 10px #00f5ff,
+      0 0 20px #0098ff;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px #ff006e,
+      0 0 10px #ff006e,
+      inset 0 0 5px rgba(255, 0, 110, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 15px #ff006e,
+      0 0 30px #ff006e,
+      inset 0 0 10px rgba(255, 0, 110, 0.5);
+  }
+}
+
+@keyframes scan-lines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100px;
+  }
+}
+
+@keyframes glitch-text {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px #ff006e,
+      2px 2px 0 #00f5ff,
+      -2px -2px 0 #b537f2;
+  }
+  50% {
+    text-shadow: 
+      0 0 10px #00f5ff,
+      -2px 2px 0 #ff006e,
+      2px -2px 0 #b537f2;
+  }
+}
+
+@keyframes upside-down-float {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes portal-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.flicker {
+  animation: flicker 2s infinite;
+}
+
+.cyan-glow {
+  animation: cyan-glow 2s ease-in-out infinite;
+}
+
+.neon-pulse {
+  animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+.glitch {
+  animation: glitch-text 1.5s ease-in-out infinite;
+}
+
+.upside-down-float {
+  animation: upside-down-float 3s ease-in-out infinite;
+}
+
+.portal-spin {
+  animation: portal-spin 20s linear infinite;
+}
+
+/* Scanlines overlay */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      rgba(0, 245, 255, 0.05) 25%,
+      rgba(0, 245, 255, 0.05) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(0, 245, 255, 0.05) 75%,
+      rgba(0, 245, 255, 0.05) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Vignette effect */
+.vignette::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  pointer-events: none;
+}
+
+/* Neon border glow */
+.neon-border {
+  border: 2px solid #ff006e;
+  box-shadow: 
+    0 0 10px #ff006e,
+    inset 0 0 10px rgba(255, 0, 110, 0.2);
+}
+
+.neon-border-cyan {
+  border: 2px solid #00f5ff;
+  box-shadow: 
+    0 0 10px #00f5ff,
+    inset 0 0 10px rgba(0, 245, 255, 0.2);
+}
+
+.neon-border-purple {
+  border: 2px solid #b537f2;
+  box-shadow: 
+    0 0 10px #b537f2,
+    inset 0 0 10px rgba(181, 55, 242, 0.2);
 }
