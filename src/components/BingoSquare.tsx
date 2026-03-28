@@ -13,7 +13,7 @@ export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
   const stateClasses = square.isMarked
     ? isWinning
       ? 'bg-neon-pink text-void neon-pulse border-2 border-neon-pink'
-      : 'bg-marked text-void border-2 border-neon-yellow'
+      : 'bg-marked text-void border-2 border-marked'
     : 'bg-void-light text-neon-cyan border-2 border-neon-cyan active:border-neon-pink hover:border-neon-pink hover:shadow-lg hover:shadow-neon-cyan/50';
 
   const freeSpaceClasses = square.isFreeSpace ? 'font-black text-sm text-neon-pink' : '';
